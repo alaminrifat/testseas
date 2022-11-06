@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Teacher;
 
 class MainController extends Controller
 {
@@ -69,4 +70,8 @@ class MainController extends Controller
         $data = ['LoggedUserInfo'=>Admin::where('id','=',session('LoggedUser'))->first()];
         return view('admin.dashboard',$data);
     }
+    public function TeacherDetails(){
+       $teacher= Teacher::all();
+       return view ('admin.TeacherList',['teachers'=> $teacher]);
+   }
 }

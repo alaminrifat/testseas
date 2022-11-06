@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\StudentController;
 use App\Http\Middleware\AuthCheck;
 use App\Http\Middleware\TeacherCheck;
 /*
@@ -29,10 +30,14 @@ Route::post('/auth/check',[MainController::class,'check'])->name('auth.check');
 Route::get('/auth/logout',[MainController::class,'logout'])->name('auth.logout');
 
 
+Route::get('/TeacherList', [MainController::class, 'TeacherDetails'])->name('TeacherList');
 
-Route::group(['middleware'=>['AuthCheck']], function(){
+// Route::post('/TeacherList', [AdminController::class, 'TeacherDetails'])->name('TeacherList');
     Route::get('/auth/login',[MainController::class, 'login'])->name('auth.login');
     Route::get('/auth/register',[MainController::class, 'register'])->name('auth.register');
+
+Route::group(['middleware'=>['AuthCheck']], function(){
+    
 
 
     Route::get('/admin/dashboard',[MainController::class,'dashboard'])->name('admin.dashboard');
@@ -64,3 +69,17 @@ Route::group(['middleware'=>['TeacherCheck']], function(){
     
     Route::get('/teacher/dashboard',[TeacherController::class,'dashboard'])->name('teacher.dashboard');   
 });
+
+
+// ___________________________________________________________________________
+//                            Student Route
+// ___________________________________________________________________________
+    Route::get('/student/login',[StudentController::class, 'login'])->name('student.login');
+    Route::get('/student/register',[StudentController::class, 'register'])->name('student.register');
+    //need to add middleware
+
+    Route::post('/student/save',[StudentController::class, 'save'])->name('student.save');
+    Route::post('/student/check',[StudentController::class,'check'])->name('student.check');
+    Route::get('/student/logout',[StudentController::class,'logout'])->name('student.logout');
+
+    Route::get('/student/dashboard',[StudentController::class,'dashboard'])->name('student.dashboard');//need to add middleware

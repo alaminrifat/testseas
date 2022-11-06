@@ -18,5 +18,8 @@
             </table>
         </div>
     </div>
+
+    <a class="btn btn-primary" href="{{route('TeacherList')}}">Teacher Details</a>
+
 </div>
 @endsection
