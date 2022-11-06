@@ -151,7 +151,9 @@ class StudentController extends Controller
         $data = ['LoggedStudentInfo'=>Student::where('id','=',session('LoggedStudent'))->first()];
         // $topics = Topic::with('teacher_id','=',session('LoggedTeacher'))->get();
         // return view('teacher.dashboard',$data)->with($topics);
-        return view('student.dashboard',$data);
+        $student= Student::all();
+
+        return view ('/student/dashboard', ['students'=> $student]);
     }
 
 

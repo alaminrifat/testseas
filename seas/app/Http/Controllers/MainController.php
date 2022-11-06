@@ -76,9 +76,6 @@ class MainController extends Controller
    }
 
    public function TeacherAdd(Request $request){
-
-
-
     $request->validate([
 
         'name'=>'required',

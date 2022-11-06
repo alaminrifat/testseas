@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\TeacherController;
@@ -20,6 +21,9 @@ use App\Http\Middleware\TeacherCheck;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/mail', [AdminController::class, 'mail']);
+Route::post('/mail/send',[AdminController::class,'send_mail_data'])->name('mail.send');
 
 // ___________________________________________________________________________
 //                            Admin Route

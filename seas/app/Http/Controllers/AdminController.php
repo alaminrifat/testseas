@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+use App\Mail\SendMail;
 
 class AdminController extends Controller
 {
@@ -83,4 +86,18 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function mail(){
+        return view('mail');
+    }
+    public function send_mail_data(Request $request){
+        $name = $request->name;
+        $email = $request->email;
+        $message = $request->message;
+        $send_mail = "examsystem9@gmail.com";
+        Mail::to($send_mail)->send(new SendMail( $name, $email, $message));
+        
+        return  view('mail')->with('success','Registration has been successful');
+    }
 }
+

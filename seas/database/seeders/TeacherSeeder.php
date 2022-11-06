@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Teacher;
 use Illuminate\Database\Seeder;
@@ -15,12 +16,20 @@ class TeacherSeeder extends Seeder
      */
     public function run()
     {    
-        for($i = 1 ; $i < 3 ; $i++){
-            $teacher = new Teacher();
-            $teacher->name = "Teacher ";
-            $teacher->email = "email@mail.com";
-            $teacher->password = Hash::make('12345678');
-            $teacher->save();
-        }
+        DB::table('teachers')->insert([
+            'name' => "Teacher02",
+            'email' => "email002@mail.com",
+            'password' => Hash::make('12345678'),
+            // $teacher->save();
+        ]);
+
+        DB::table('teachers')->insert([
+            'name' => "Teacher03",
+            'email' => "email003@mail.com",
+            'password' => Hash::make('12345678'),
+            // $teacher->save();
+        ]);
+
+        
     }
 }
