@@ -30,6 +30,13 @@ Route::post('/auth/check',[MainController::class,'check'])->name('auth.check');
 Route::get('/auth/logout',[MainController::class,'logout'])->name('auth.logout');
 
 
+Route::get('/TeacherCreate', function () {
+    return view('admin.TeacherCreate');
+});
+
+Route::post('/TeacherCreate', [MainController::class, 'TeacherAdd'])->name('TeacherCreate');
+
+
 Route::get('/TeacherList', [MainController::class, 'TeacherDetails'])->name('TeacherList');
 
 // Route::post('/TeacherList', [AdminController::class, 'TeacherDetails'])->name('TeacherList');
@@ -37,9 +44,6 @@ Route::get('/TeacherList', [MainController::class, 'TeacherDetails'])->name('Tea
     Route::get('/auth/register',[MainController::class, 'register'])->name('auth.register');
 
 Route::group(['middleware'=>['AuthCheck']], function(){
-    
-
-
     Route::get('/admin/dashboard',[MainController::class,'dashboard'])->name('admin.dashboard');
 });
 

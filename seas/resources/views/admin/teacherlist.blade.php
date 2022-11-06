@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col col-md-6"><h1>Teacher Details</h1></div>
             <div class="col col-md-10">
-                {{-- <a href="{{route('TeacherCreate')}}" class="btn btn-info">Add</button></a>  --}}
+                <a href="{{route('TeacherCreate')}}" class="btn btn-info">Add</button></a> 
             </div>
         </div>
     </div>
@@ -47,4 +47,5 @@
          
     
     </table>
+    <a href="{{route('admin.dashboard')}}" class="btn btn-info">Back</button></a> 
    @endsection 

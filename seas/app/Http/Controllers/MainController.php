@@ -74,4 +74,48 @@ class MainController extends Controller
        $teacher= Teacher::all();
        return view ('admin.TeacherList',['teachers'=> $teacher]);
    }
+
+   public function TeacherAdd(Request $request){
+
+
+
+    $request->validate([
+
+        'name'=>'required',
+
+        'email' => 'required|email|unique:teachers',
+
+        'password' => 'required'
+
+    ]);
+
+   
+
+    $teacher = new Teacher;
+
+    $teacher->name = $request->name;
+
+    $teacher->email = $request->email;
+
+   $teacher->password = Hash::make($request->password);
+
+    $save = $teacher->save();
+
+    return redirect('admin/TeacherList');
+
+
+
+    // if($save){
+
+    //     return back()->with('success','Registration has been successful');
+
+    // }
+
+    // else{
+
+    //     return back()->with('fail','Try Again, Something wrong');
+
+    // }
+
+}
 }
